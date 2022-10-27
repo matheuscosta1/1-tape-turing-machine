@@ -26,9 +26,7 @@ public class TuringMachineService {
 
     Resource resource = resourceLoader.getResource(fileResource);
     ObjectMapper objectMapper = new ObjectMapper();
-    TuringMachineRequest turingMachineRequest = objectMapper.readValue(new File(resource.getURI().getPath()), TuringMachineRequest.class);
-
-    return turingMachineRequest;
+    return objectMapper.readValue(new File(resource.getURI().getPath()), TuringMachineRequest.class);
   }
 
 }
