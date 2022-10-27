@@ -1,0 +1,33 @@
+info:
+  app:
+    name: @project.artifactId@
+    version: @project.version@
+server:
+  servlet:
+    context-path: /@project.artifactId@
+  port: 6000
+spring:
+  application:
+    name: @project.artifactId@
+
+
+turing-machine:
+  resource: classpath:entrada/maquina.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    logfile:
+      external-file: application.log
+
+logging:
+  file:
+    name: application.log
+  logback:
+    rollingpolicy:
+      max-file-size: 500MB
