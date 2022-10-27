@@ -1,4 +1,4 @@
-package br.com.turing.machine.controller.request;
+package br.com.turing.machine.service.request;
 
 import br.com.turing.machine.domain.Alphabeth;
 import br.com.turing.machine.domain.Simbol;
@@ -22,5 +22,4 @@ public class TuringMachineRequest {
   private String estadoInicial;
   private List<State> estadosFinais;
   private List<State> estados;
-
 }

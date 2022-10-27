@@ -9,7 +9,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 
 @Configuration
-public class WebMvcConfiguration {
+public class TuringMachineConfiguration {
 
   @Bean
   public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder mapperBuilder) {
