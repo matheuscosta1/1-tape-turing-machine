@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Alphabeth {
+public class Alphabet {
 
-  private String caracter;
+  private String character;
 }

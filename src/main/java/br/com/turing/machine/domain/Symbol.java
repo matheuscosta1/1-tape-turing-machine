@@ -7,8 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Simbol {
+public class Symbol {
 
-  private String caracter;
+  private String character;
 
 }

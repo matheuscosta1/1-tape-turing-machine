@@ -1,5 +1,6 @@
 package br.com.turing.machine.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
@@ -9,10 +10,19 @@ import lombok.*;
 @Builder
 public class Transition {
 
-  private String simbolo;
-  private String escreve;
-  private String direcao;
-  private String estadoOrigem;
-  private String estadoDestino;
+  @JsonProperty("simbolo")
+  private String symbol;
+
+  @JsonProperty("escreve")
+  private String write;
+
+  @JsonProperty("direcao")
+  private String direction;
+
+  @JsonProperty("estadoOrigem")
+  private String originState;
+
+  @JsonProperty("estadoDestino")
+  private String destinyState;
 
 }
