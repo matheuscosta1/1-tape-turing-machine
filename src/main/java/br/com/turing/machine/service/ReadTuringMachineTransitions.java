@@ -14,18 +14,19 @@ import java.io.IOException;
 @Service
 public class ReadTuringMachineTransitions {
 
-  @Value("${turing-machine.resource}")
-  private String fileResource;
-  @Autowired ResourceLoader resourceLoader;
+    @Value("${turing-machine.resource.input}")
+    private String fileResource;
+    @Autowired
+    ResourceLoader resourceLoader;
 
-  public ReadTuringMachineTransitions(ResourceLoader resourceLoader) {
-    this.resourceLoader = resourceLoader;
-  }
+    public ReadTuringMachineTransitions(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
-  public TuringMachine readFile() throws IOException {
+    public TuringMachine readFile() throws IOException {
 
-    Resource resource = resourceLoader.getResource(fileResource);
-    ObjectMapper objectMapper = new ObjectMapper();
-    return objectMapper.readValue(new File(resource.getURI().getPath()), TuringMachine.class);
-  }
+        Resource resource = resourceLoader.getResource(fileResource);
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(new File(resource.getURI().getPath()), TuringMachine.class);
+    }
 }

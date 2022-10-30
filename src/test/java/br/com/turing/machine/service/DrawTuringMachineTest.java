@@ -2,10 +2,12 @@ package br.com.turing.machine.service;
 
 import org.junit.jupiter.api.Test;
 
-class DrawTuringMachineJpanelTest {
+import java.io.IOException;
+
+class DrawTuringMachineTest {
 
     @Test
-    void shouldDrawLines() {
+    void shouldDrawLines() throws IOException {
 
         DrawTuringMachine drawTuringMachine = new DrawTuringMachine();
     }

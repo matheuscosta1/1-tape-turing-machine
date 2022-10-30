@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class TuringMachineProcessor {
 
-  @Autowired DrawTuringMachine drawTuringMachine;
+    // @Autowired DrawTuringMachine drawTuringMachine;
 
-  public Void run(TuringMachine turingMachine) {
+    public Void run(TuringMachine turingMachine) {
 
 
-    return null;
-  }
+        return null;
+    }
 
 }

@@ -12,7 +12,9 @@ spring:
 
 
 turing-machine:
-  resource: classpath:entrada/maquina.json
+  resource:
+    input: classpath:entrada/maquina.json
+    image: classpath:images/arrow.png
 
 management:
   endpoints:
