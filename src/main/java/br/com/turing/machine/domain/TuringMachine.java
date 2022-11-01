@@ -46,7 +46,7 @@ public class TuringMachine {
   }
 
   public Optional<Transition> findTransitionByActualStateAndReadSymbol(String actualState, String readSymbol) {
-    return transitions.stream().filter(transition -> transition.getOriginState().equals(actualState) && transition.getSymbol().equals(readSymbol)).findFirst();
+    return transitions.stream().filter(transition -> transition.getOriginState().equals(actualState) && transition.getReadSymbol().equals(readSymbol)).findFirst();
   }
 
 }

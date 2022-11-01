@@ -50,8 +50,8 @@ public class BaseUtilsTest {
 
     public List<Transition> newTransitions() {
         return List.of(
-                Transition.builder().symbol("*").write("*").direction("RIGHT").originState("q0").destinyState("q0").build(),
-                Transition.builder().symbol("0").write("X").direction("RIGHT").originState("q0").destinyState("q1").build()
+                Transition.builder().readSymbol("*").writeSymbol("*").direction("RIGHT").originState("q0").destinyState("q0").build(),
+                Transition.builder().readSymbol("0").writeSymbol("X").direction("RIGHT").originState("q0").destinyState("q1").build()
         );
     }
 }

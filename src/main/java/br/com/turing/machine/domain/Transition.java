@@ -11,10 +11,10 @@ import lombok.*;
 public class Transition {
 
   @JsonProperty("simbolo")
-  private String symbol;
+  private String readSymbol;
 
   @JsonProperty("escreve")
-  private String write;
+  private String writeSymbol;
 
   @JsonProperty("direcao")
   private String direction;

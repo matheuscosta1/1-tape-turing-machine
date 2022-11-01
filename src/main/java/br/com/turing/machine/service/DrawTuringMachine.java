@@ -90,7 +90,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
     }
 
     private void submitAction() throws IOException {
-        String initialState = turingMachine.getTransitions().get(0).getSymbol();
+        String initialState = turingMachine.getTransitions().get(0).getReadSymbol();
         String word = userInput.getText();
         String wordWithInitialState = initialState.concat(word);
         inputButton.setEnabled(false);
@@ -161,7 +161,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         graphics.drawRect(cellCoordinate.getXAxis(), cellCoordinate.getYAxis(), width, height);
 
-        graphics.drawString(transition.getWrite(), cellCoordinate.getXAxis(), cellCoordinate.getDrawStringYAxis());
+        graphics.drawString(transition.getWriteSymbol(), cellCoordinate.getXAxis(), cellCoordinate.getDrawStringYAxis());
 
 
         if(transition.getDirection().equals("RIGHT")) {
@@ -174,7 +174,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         actualState = transition.getDestinyState();
 
-        cellCoordinate.setSymbol(Symbol.builder().character(transition.getWrite()).build()); //atualiza simbolo na transicao que está sendo processada de acordo com o novo simbolo que foi gravado na fita
+        cellCoordinate.setSymbol(Symbol.builder().character(transition.getWriteSymbol()).build()); //atualiza simbolo na transicao que está sendo processada de acordo com o novo simbolo que foi gravado na fita
 
         outputActualState.setText("Actual state: ".concat(actualState));
 
