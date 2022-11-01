@@ -21,7 +21,7 @@
 		{
 			"simbolo": "0",
 			"escreve": "X",
-			"direcao": "RIGTH",
+			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q1"
 		},
@@ -35,7 +35,7 @@
 		{
 			"simbolo": "Y",
 			"escreve": "Y",
-			"direcao": "RIGTH",
+			"direcao": "RIGHT",
 			"estadoOrigem": "q1",
 			"estadoDestino": "q1"
 		},
@@ -96,6 +96,7 @@
 			"estadoDestino": "q4"
 		}
 	],
+	"marcadorInicio": "*",
 	"simboloBranco": "B",
 	"estadoInicial": "q0",
 	"estadosFinais": [

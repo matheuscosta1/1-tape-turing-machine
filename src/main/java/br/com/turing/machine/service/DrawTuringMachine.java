@@ -2,6 +2,8 @@ package br.com.turing.machine.service;
 
 import br.com.turing.machine.domain.CellCoordinate;
 import br.com.turing.machine.domain.Symbol;
+import br.com.turing.machine.domain.Transition;
+import br.com.turing.machine.domain.TuringMachine;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -12,24 +14,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class DrawTuringMachine extends JPanel implements ActionListener {
 
     ResourceLoader resourceLoader = new DefaultResourceLoader();
-    private final String fileResource = "classpath:images/arrow.png";
 
-    ImageIcon imageIcon = new ImageIcon(new ImageIcon(resourceLoader.getResource(fileResource).getURL()).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+    ReadTuringMachineTransitions readTuringMachineTransitions = new ReadTuringMachineTransitions();
+
+    private final String arrowImageFilePath = "classpath:images/arrow.png";
+    private final String inputFilePath = "classpath:entrada/maquina.json";
+
+    ImageIcon imageIcon = new ImageIcon(new ImageIcon(resourceLoader.getResource(arrowImageFilePath).getURL()).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 
     JButton processorButton = new JButton("Processar");
     JButton inputButton = new JButton("Enviar");
 
     JTextField userInput;
-    JLabel imageLabel;
-
+    JLabel arrow;
     JTextField outputActualState;
 
     ArrayList<CellCoordinate> coordinateList = new ArrayList<>();
+
+    TuringMachine turingMachine;
+
+    String actualState;
+
+    Integer index = 0;
 
     DrawTuringMachine() throws IOException {
         setLayout(null);
@@ -61,39 +73,49 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         processorButton.addActionListener(this);
 
+        arrow = new JLabel(imageIcon, SwingConstants.CENTER);
 
-        imageLabel = new JLabel(imageIcon, SwingConstants.CENTER);
-
-        outputActualState.setText("Actual state: q0");
-
-        add(imageLabel);
-
+        add(arrow);
         add(processorButton, BorderLayout.SOUTH);
         add(userInput);
         add(inputButton);
         add(outputActualState);
 
+        turingMachine = readTuringMachineTransitions.readFile(inputFilePath);
+
+        actualState = turingMachine.getInitialState();
+
+        outputActualState.setText("Actual state: ".concat(actualState));
+
     }
 
     private void submitAction() throws IOException {
+        String initialState = turingMachine.getTransitions().get(0).getSymbol();
         String word = userInput.getText();
+        String wordWithInitialState = initialState.concat(word);
         inputButton.setEnabled(false);
         userInput.setEnabled(false);
-        draw(word);
+        int quantityOfBlankSymbols = 60 - wordWithInitialState.length();
+
+        String wordWithBlankSymbols = wordWithInitialState.concat("B".repeat(quantityOfBlankSymbols));
+
+        draw(wordWithBlankSymbols);
+
     }
 
     public void draw(String word) {
         Graphics graphics = getGraphics();
 
-        graphics.setFont(new Font("", Font.PLAIN, 30));
-        FontMetrics fontMetrics = getFontMetrics(new Font("", Font.PLAIN, 30));
+        graphics.setFont(new Font("", Font.PLAIN, 20));
+
         int axisX = 100;
         int axisY = 200;
+        int height = 20;
+        int width = 20;
 
         for (int iterator = 0; iterator < word.length(); iterator++) {
             char actualCharacter = word.charAt(iterator);
-            int height = fontMetrics.getHeight();
-            int width = fontMetrics.charWidth(actualCharacter);
+
 
             graphics.drawRect(axisX, axisY, width, height);
 
@@ -118,7 +140,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
             axisX = axisX + width;
         }
 
-        imageLabel.setBounds(100, 250, 30, 30); //escreve a seta apontando para primeira celula (estado inicial)
+        arrow.setBounds(100, 250, 30, 30); //escreve a seta apontando para primeira celula (estado inicial)
 
         outputActualState.setBounds(100, 300, 130, 50); //escreve o estado atual na tela
         outputActualState.setEnabled(false);
@@ -126,25 +148,48 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
         processorButton.setEnabled(true);
     }
 
-    public void update() {
+    public void drawUpdate(Transition transition) {
         Graphics graphics = getGraphics();
-        graphics.setFont(new Font("", Font.PLAIN, 30));
+        graphics.setFont(new Font("", Font.PLAIN, 20));
 
-        graphics.clearRect(100, 200, 29, 36);
+        int height = 20;
+        int width = 20;
 
-        graphics.drawRect(100, 200, 29, 36);
+        CellCoordinate cellCoordinate = coordinateList.get(index);
 
-        graphics.drawString("b", 100, 236);
+        graphics.clearRect(cellCoordinate.getXAxis(), cellCoordinate.getYAxis(), width, height);
 
-        imageLabel.setBounds(120, 250, 30, 30);
-        outputActualState.setText("Actual state: q1");
+        graphics.drawRect(cellCoordinate.getXAxis(), cellCoordinate.getYAxis(), width, height);
 
+        graphics.drawString(transition.getWrite(), cellCoordinate.getXAxis(), cellCoordinate.getDrawStringYAxis());
+
+
+        if(transition.getDirection().equals("RIGHT")) {
+            arrow.setBounds(cellCoordinate.getXAxis() + width, 250, width, height);
+            index += 1;
+        } else {
+            arrow.setBounds(cellCoordinate.getXAxis() - width, 250, width, height);
+            index -= 1;
+        }
+
+        actualState = transition.getDestinyState();
+
+        cellCoordinate.setSymbol(Symbol.builder().character(transition.getWrite()).build()); //atualiza simbolo na transicao que está sendo processada de acordo com o novo simbolo que foi gravado na fita
+
+        outputActualState.setText("Actual state: ".concat(actualState));
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        update();
+        Optional<Transition> transition = processMachine();
+        transition.ifPresent(this::drawUpdate);
+    }
+
+    private Optional<Transition> processMachine(){
+        CellCoordinate cellCoordinate = coordinateList.get(index);
+
+        return turingMachine.findTransitionByActualStateAndReadSymbol(actualState, cellCoordinate.getSymbol().getCharacter());
     }
 
     public static void main(String[] args) throws IOException {

@@ -4,6 +4,7 @@ import br.com.turing.machine.domain.TuringMachine;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -14,18 +15,12 @@ import java.io.IOException;
 @Service
 public class ReadTuringMachineTransitions {
 
-    @Value("${turing-machine.resource.input}")
-    private String fileResource;
-    @Autowired
-    ResourceLoader resourceLoader;
 
-    public ReadTuringMachineTransitions(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
+    ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-    public TuringMachine readFile() throws IOException {
+    public TuringMachine readFile(String inputFilePath) throws IOException {
 
-        Resource resource = resourceLoader.getResource(fileResource);
+        Resource resource = resourceLoader.getResource(inputFilePath);
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(new File(resource.getURI().getPath()), TuringMachine.class);
     }

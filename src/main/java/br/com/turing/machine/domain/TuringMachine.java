@@ -34,6 +34,9 @@ public class TuringMachine {
   @JsonProperty("estados")
   private List<State> states;
 
+  @JsonProperty("marcadorInicio")
+  private String startMaker;
+
   public boolean isValidWhiteSymbol() {
     return symbols.stream().anyMatch(symbol -> symbol.getCharacter().equals(whiteSymbol));
   }
