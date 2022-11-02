@@ -4,6 +4,8 @@ import br.com.turing.machine.BaseUtilsTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 class TuringMachineTest extends BaseUtilsTest {
@@ -129,6 +131,31 @@ class TuringMachineTest extends BaseUtilsTest {
         turingMachine.setStartMaker(null);
         turingMachine.getTransitions().get(0).setSymbolRead("P");
         Assertions.assertFalse(turingMachine.validateTransitions());
+    }
+
+    @Test
+    void shouldAcceptWord() {
+        TuringMachine turingMachine = newTuringMachine();
+        Assertions.assertTrue(turingMachine.isWordAccepted("q4"));
+    }
+
+    @Test
+    void shouldRejectWord() {
+        TuringMachine turingMachine = newTuringMachine();
+        Assertions.assertFalse(turingMachine.isWordAccepted("q5"));
+    }
+
+    @Test
+    void shouldHasFinalStates() {
+        TuringMachine turingMachine = newTuringMachine();
+        Assertions.assertTrue(turingMachine.hasFinalStates());
+    }
+
+    @Test
+    void shouldNotHasFinalStates() {
+        TuringMachine turingMachine = newTuringMachine();
+        turingMachine.setFinalStates(Collections.emptyList());
+        Assertions.assertFalse(turingMachine.hasFinalStates());
     }
 
 }

@@ -81,4 +81,12 @@ public class TuringMachine {
     return transitions.stream().filter(transition -> transition.getOriginState().equals(actualState) && transition.getSymbolRead().equals(readSymbol)).findFirst();
   }
 
+  public boolean isWordAccepted(String actualState) {
+    return getFinalStates().stream().anyMatch(state -> state.getName().equals(actualState));
+  }
+
+  public boolean hasFinalStates() {
+    return !getFinalStates().isEmpty();
+  }
+
 }

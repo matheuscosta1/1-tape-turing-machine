@@ -15,7 +15,7 @@ class ReadTuringMachineServiceTest {
     void shouldReadFile() throws Exception {
         ReadTuringMachineTransitions turingMachineService = new ReadTuringMachineTransitions();
 
-        String inputFilePath = "classpath:entrada/maquina.json";
+        String inputFilePath = "classpath:entrada/maquina-1.json";
         TuringMachine turingMachineRequest = turingMachineService.readFile(inputFilePath);
         Assertions.assertNotNull(turingMachineRequest);
     }

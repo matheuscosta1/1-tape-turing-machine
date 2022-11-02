@@ -17,6 +17,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
     private static final int WIDTH = 20;
     private static final int FONT_SIZE = 20;
     private static final int QUANTITY_OF_TAPE_CELL = 74;
+    public static final String PROCESSOR_EVENT = "Processar";
     private final String arrowImageFilePath = "classpath:images/arrow.png";
 
     String actualState;
@@ -40,7 +41,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
     DrawTuringMachine() throws Exception {
         setLayout(null);
 
-        String inputFilePath = "classpath:entrada/maquina.json";
+        String inputFilePath = "classpath:entrada/maquina-2.json";
         turingMachine = readTuringMachineTransitions.readFile(inputFilePath);
         actualState = turingMachine.getInitialState();
 
@@ -102,7 +103,6 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
         String wordWithBlankSymbols = wordWithInitialState.concat("B".repeat(quantityOfBlankSymbols));
 
         tapeDraw(wordWithBlankSymbols);
-
     }
 
     public void tapeDraw(String word) {
@@ -174,7 +174,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         actualState = transition.getDestinyState();
 
-        updateActualSymbolReadFromTapeInTapeCoordinateList(transition, cellTapeCoordinate); //atualiza simbolo na transicao que está sendo processada de acordo com o novo simbolo que foi gravado na fita
+        updateActualSymbolReadFromTapeInTapeCoordinateList(transition, cellTapeCoordinate);
 
         drawActualState.setText("Actual state: ".concat(actualState));
 
@@ -206,43 +206,53 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Processar")) {
-
+        if(e.getActionCommand().equals(PROCESSOR_EVENT)) {
             Optional<Transition> transition = processMachine();
-
-            if(transition.isPresent()) {
-                transition.ifPresent(this::updateTapeDraw);
-            } else {
-                if(turingMachine.getFinalStates().stream().anyMatch(state -> state.getName().equals(actualState))) {
-                    JOptionPane.showMessageDialog(null, "Palavra foi aceita");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Palavra foi rejeitada");
-                }
-            }
+            processTuringMachineOneStepPerTime(transition);
         } else {
             processorButton.setEnabled(false);
             skipProcessingButton.setEnabled(false);
 
-            new Thread(() -> {
-                Optional<Transition> transition = processMachine();
-
-                while (transition.isPresent()) {
-                    transition = processMachine();
-                    transition.ifPresent(this::updateTapeDraw);
-                    try {
-                        Thread.sleep(1200);
-                    } catch (InterruptedException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-                if(turingMachine.getFinalStates().stream().anyMatch(state -> state.getName().equals(actualState))) {
-                    JOptionPane.showMessageDialog(null, "A cadeia foi aceita.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "A cadeia foi rejeitada.");
-                }
-            }).start();
-
+            processTuringMachineStepByStepTillTheEnd();
         }
+    }
+
+    private void processTuringMachineOneStepPerTime(Optional<Transition> transition) {
+        if(transition.isPresent()) {
+            transition.ifPresent(this::updateTapeDraw);
+        } else {
+            validateTuringMachineAcceptsWord();
+        }
+    }
+
+    private void processTuringMachineStepByStepTillTheEnd() {
+        new Thread(() -> {
+            Optional<Transition> transition = processMachine();
+
+            while (transition.isPresent()) {
+                transition = processMachine();
+                transition.ifPresent(this::updateTapeDraw);
+                try {
+                    Thread.sleep(1200);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+            validateTuringMachineAcceptsWord();
+        }).start();
+    }
+
+    private void validateTuringMachineAcceptsWord() {
+        if(turingMachine.hasFinalStates()) {
+            if(turingMachine.isWordAccepted(actualState)) {
+                JOptionPane.showMessageDialog(null, "A cadeia foi aceita.");
+            } else {
+                JOptionPane.showMessageDialog(null, "A cadeia foi rejeitada.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "O processamento terminou.");
+        }
+
     }
 
     private Optional<Transition> processMachine(){
