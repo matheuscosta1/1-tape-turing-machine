@@ -10,7 +10,6 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.IOException;
 
 @Service
 public class ReadTuringMachineTransitions {
@@ -25,7 +24,7 @@ public class ReadTuringMachineTransitions {
 
         TuringMachineValidator turingMachineValidator = new TuringMachineValidator(turingMachine);
 
-        if(turingMachineValidator.isValid()) {
+        if(turingMachineValidator.isValidMachine()) {
             return turingMachine;
         }
 

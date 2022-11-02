@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tape {
+public class CellTape {
 
   private Symbol symbol;
   private Integer xAxis;

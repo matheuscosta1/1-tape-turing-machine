@@ -2,6 +2,8 @@ package br.com.turing.machine.validator;
 
 import br.com.turing.machine.domain.TuringMachine;
 
+import java.util.Arrays;
+
 public class TuringMachineValidator {
 
     TuringMachine turingMachine;
@@ -10,7 +12,14 @@ public class TuringMachineValidator {
         this.turingMachine = turingMachine;
     }
 
-    public boolean isValid() {
-        return turingMachine.isValidInitialState() && turingMachine.isValidWhiteSymbol() && turingMachine.isValidFinalState();
+    public boolean isValidMachine() {
+        return turingMachine.isValidInitialState()
+                && turingMachine.isValidWhiteSymbol()
+                && turingMachine.isValidFinalState()
+                && turingMachine.validateTransitions();
+    }
+
+    public boolean isValidWord(String word) {
+        return Arrays.stream(word.split("")).allMatch(character -> turingMachine.getAlphabet().stream().anyMatch(alphabet -> alphabet.getCharacter().equals(character)));
     }
 }

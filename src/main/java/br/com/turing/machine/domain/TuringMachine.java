@@ -51,8 +51,34 @@ public class TuringMachine {
     return finalStates.stream().allMatch(finalState -> states.stream().anyMatch(state -> state.getName().equals(finalState.getName())));
   }
 
+  public boolean isValidOriginState(Transition transition) {
+    return states.stream().anyMatch(state -> state.getName().equals(transition.getOriginState()));
+  }
+
+  public boolean isValidDestinyState(Transition transition) {
+    return states.stream().anyMatch(state -> state.getName().equals(transition.getDestinyState()));
+  }
+
+  public boolean isValidWriteSymbol(Transition transition) {
+    if(transition.getWriteSymbol().equals(startMaker)) {
+      return true;
+    }
+    return symbols.stream().anyMatch(symbol -> symbol.getCharacter().equals(transition.getWriteSymbol()));
+  }
+
+  public boolean isValidSymbolRead(Transition transition) {
+    if(transition.getSymbolRead().equals(startMaker)) {
+      return true;
+    }
+    return symbols.stream().anyMatch(symbol -> symbol.getCharacter().equals(transition.getSymbolRead()));
+  }
+
+  public boolean validateTransitions() {
+    return transitions.stream().allMatch(transition -> isValidOriginState(transition) && isValidDestinyState(transition) && isValidWriteSymbol(transition) && isValidSymbolRead(transition));
+  }
+
   public Optional<Transition> findTransitionByActualStateAndReadSymbol(String actualState, String readSymbol) {
-    return transitions.stream().filter(transition -> transition.getOriginState().equals(actualState) && transition.getReadSymbol().equals(readSymbol)).findFirst();
+    return transitions.stream().filter(transition -> transition.getOriginState().equals(actualState) && transition.getSymbolRead().equals(readSymbol)).findFirst();
   }
 
 }

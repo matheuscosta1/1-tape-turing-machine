@@ -11,7 +11,7 @@ import lombok.*;
 public class Transition {
 
   @JsonProperty("simbolo")
-  private String readSymbol;
+  private String symbolRead;
 
   @JsonProperty("escreve")
   private String writeSymbol;

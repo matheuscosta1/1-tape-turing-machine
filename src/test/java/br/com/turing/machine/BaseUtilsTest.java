@@ -17,6 +17,7 @@ public class BaseUtilsTest {
                 .states(newStates())
                 .symbols(newSymbols())
                 .transitions(newTransitions())
+                .startMaker("*")
                 .build();
     }
 
@@ -55,8 +56,8 @@ public class BaseUtilsTest {
 
     public List<Transition> newTransitions() {
         ArrayList<Transition> arrayList = new ArrayList<>();
-        arrayList.add(Transition.builder().readSymbol("*").writeSymbol("*").direction(Direction.RIGHT).originState("q0").destinyState("q0").build());
-        arrayList.add(Transition.builder().readSymbol("0").writeSymbol("X").direction(Direction.RIGHT).originState("q0").destinyState("q1").build());
+        arrayList.add(Transition.builder().symbolRead("*").writeSymbol("*").direction(Direction.RIGHT).originState("q0").destinyState("q0").build());
+        arrayList.add(Transition.builder().symbolRead("0").writeSymbol("X").direction(Direction.RIGHT).originState("q0").destinyState("q1").build());
         return arrayList;
     }
 }
