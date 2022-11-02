@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DrawTuringMachine extends JPanel implements ActionListener {
@@ -197,8 +198,18 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Processar")) {
+
             Optional<Transition> transition = processMachine();
-            transition.ifPresent(this::drawUpdate);
+
+            if(transition.isPresent()) {
+                transition.ifPresent(this::drawUpdate);
+            } else {
+                if(turingMachine.getFinalStates().stream().anyMatch(state -> state.getName().equals(actualState))) {
+                    JOptionPane.showMessageDialog(null, "Palavra foi aceita");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Palavra foi rejeitada");
+                }
+            }
         } else {
             processorButton.setEnabled(false);
             skipProcessingButton.setEnabled(false);
@@ -214,7 +225,11 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
                         throw new RuntimeException(ex);
                     }
                 }
-                System.out.println("acabou");
+                if(turingMachine.getFinalStates().stream().anyMatch(state -> state.getName().equals(actualState))) {
+                    JOptionPane.showMessageDialog(null, "Palavra foi aceita");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Palavra foi rejeitada");
+                }
             }).start();
 
         }
