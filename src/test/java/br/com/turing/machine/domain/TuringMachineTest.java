@@ -41,4 +41,17 @@ class TuringMachineTest extends BaseUtilsTest {
         transition.ifPresent(value -> Assertions.assertEquals("q1", value.getDestinyState()));
     }
 
+    @Test
+    void shouldBeValidFinalStates() {
+        TuringMachine turingMachine = newTuringMachine();
+        Assertions.assertTrue(turingMachine.isValidFinalState());
+    }
+
+    @Test
+    void shouldNotBeValidFinalStates() {
+        TuringMachine turingMachine = newTuringMachine();
+        turingMachine.getFinalStates().add(State.builder().name("q5").build());
+        Assertions.assertFalse(turingMachine.isValidFinalState());
+    }
+
 }

@@ -2,6 +2,7 @@ package br.com.turing.machine;
 
 import br.com.turing.machine.domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseUtilsTest {
@@ -19,39 +20,43 @@ public class BaseUtilsTest {
                 .build();
     }
 
-    public List<Alphabet> newAlphabet() {
-        return List.of(Alphabet.builder().character("0").build());
+    public ArrayList<Alphabet> newAlphabet() {
+        ArrayList<Alphabet> arrayList = new ArrayList<>();
+        arrayList.add(Alphabet.builder().character("0").build());
+        return arrayList;
     }
 
-    public List<State> newFinalStates() {
-        return List.of(State.builder().name("q4").build());
+    public ArrayList<State> newFinalStates() {
+        ArrayList<State> arrayList = new ArrayList<>();
+        arrayList.add(State.builder().name("q4").build());
+        return arrayList;
     }
 
-    public List<State> newStates() {
-        return List.of(
-                State.builder().name("q0").build(),
-                State.builder().name("q1").build(),
-                State.builder().name("q2").build(),
-                State.builder().name("q3").build(),
-                State.builder().name("q4").build()
-        );
+    public ArrayList<State> newStates() {
+        ArrayList<State> arrayList = new ArrayList<>();
+        arrayList.add(State.builder().name("q0").build());
+        arrayList.add(State.builder().name("q1").build());
+        arrayList.add(State.builder().name("q2").build());
+        arrayList.add(State.builder().name("q3").build());
+        arrayList.add(State.builder().name("q4").build());
+        return arrayList;
     }
 
 
-    public List<Symbol> newSymbols() {
-        return List.of(
-                Symbol.builder().character("0").build(),
-                Symbol.builder().character("1").build(),
-                Symbol.builder().character("X").build(),
-                Symbol.builder().character("Y").build(),
-                Symbol.builder().character("B").build()
-        );
+    public ArrayList<Symbol> newSymbols() {
+        ArrayList<Symbol> arrayList = new ArrayList<>();
+        arrayList.add(Symbol.builder().character("0").build());
+        arrayList.add(Symbol.builder().character("1").build());
+        arrayList.add(Symbol.builder().character("X").build());
+        arrayList.add(Symbol.builder().character("Y").build());
+        arrayList.add(Symbol.builder().character("B").build());
+        return arrayList;
     }
 
     public List<Transition> newTransitions() {
-        return List.of(
-                Transition.builder().readSymbol("*").writeSymbol("*").direction("RIGHT").originState("q0").destinyState("q0").build(),
-                Transition.builder().readSymbol("0").writeSymbol("X").direction("RIGHT").originState("q0").destinyState("q1").build()
-        );
+        ArrayList<Transition> arrayList = new ArrayList<>();
+        arrayList.add(Transition.builder().readSymbol("*").writeSymbol("*").direction(Direction.RIGHT).originState("q0").destinyState("q0").build());
+        arrayList.add(Transition.builder().readSymbol("0").writeSymbol("X").direction(Direction.RIGHT).originState("q0").destinyState("q1").build());
+        return arrayList;
     }
 }

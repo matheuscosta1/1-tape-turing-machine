@@ -17,7 +17,7 @@ public class Transition {
   private String writeSymbol;
 
   @JsonProperty("direcao")
-  private String direction;
+  private Direction direction;
 
   @JsonProperty("estadoOrigem")
   private String originState;
