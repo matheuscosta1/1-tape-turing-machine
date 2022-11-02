@@ -1,4 +1,4 @@
-package br.com.turing.machine.service;
+package br.com.turing.machine;
 
 import br.com.turing.machine.domain.TuringMachine;
 import br.com.turing.machine.exception.TuringMachineException;

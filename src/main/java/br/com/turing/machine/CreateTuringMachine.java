@@ -1,4 +1,4 @@
-package br.com.turing.machine.service;
+package br.com.turing.machine;
 
 import br.com.turing.machine.domain.*;
 import br.com.turing.machine.validator.TuringMachineValidator;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
-public class DrawTuringMachine extends JPanel implements ActionListener {
+public class CreateTuringMachine extends JPanel implements ActionListener {
     private static final int HEIGHT = 20;
     private static final int WIDTH = 20;
     private static final int FONT_SIZE = 20;
@@ -38,7 +38,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
     JLabel arrow;
     JTextField drawActualState;
 
-    DrawTuringMachine() throws Exception {
+    CreateTuringMachine() throws Exception {
         setLayout(null);
 
         String inputFilePath = "classpath:entrada/maquina-2.json";
@@ -265,7 +265,7 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         JFrame frame = new JFrame("Máquina de Turing");
 
-        frame.add(new DrawTuringMachine());
+        frame.add(new CreateTuringMachine());
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
