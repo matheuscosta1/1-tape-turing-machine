@@ -26,14 +26,16 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
     private final String arrowImageFilePath = "classpath:images/arrow.png";
     private final String inputFilePath = "classpath:entrada/maquina.json";
 
-    ImageIcon imageIcon = new ImageIcon(new ImageIcon(resourceLoader.getResource(arrowImageFilePath).getURL()).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+    ImageIcon arrowImageIcon = new ImageIcon(new ImageIcon(resourceLoader.getResource(arrowImageFilePath).getURL()).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 
     JButton processorButton = new JButton("Processar");
     JButton inputButton = new JButton("Enviar");
 
+    JButton skipProcessingButton = new JButton("Pular processamento");
+
     JTextField userInput;
     JLabel arrow;
-    JTextField outputActualState;
+    JTextField drawActualState;
 
     ArrayList<CellCoordinate> coordinateList = new ArrayList<>();
 
@@ -48,13 +50,15 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         userInput = new JTextField("", 30);
 
-        outputActualState = new JTextField("", 30);
+        drawActualState = new JTextField("", 30);
 
         userInput.setBounds(100, 500, 150, 100);
 
         userInput.setSize(new Dimension(300, 50));
 
-        inputButton.setBounds(300, 600, 150, 100);
+        userInput.setToolTipText("Entre com uma palavra para ser processada.");
+
+        inputButton.setBounds(350, 600, 200, 100);
 
         inputButton.addActionListener(
                 e -> {
@@ -67,25 +71,33 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
         );
 
 
-        processorButton.setBounds(100, 600, 150, 100);
+        processorButton.setBounds(100, 600, 200, 100);
+
+        skipProcessingButton.setBounds(100, 730, 200, 100);
 
         processorButton.setEnabled(false);
 
-        processorButton.addActionListener(this);
+        skipProcessingButton.setEnabled(false);
 
-        arrow = new JLabel(imageIcon, SwingConstants.CENTER);
+        processorButton.addActionListener(this);
+        skipProcessingButton.addActionListener(this);
+
+        arrow = new JLabel(arrowImageIcon, SwingConstants.CENTER);
 
         add(arrow);
-        add(processorButton, BorderLayout.SOUTH);
         add(userInput);
         add(inputButton);
-        add(outputActualState);
+        add(processorButton, BorderLayout.SOUTH);
+        add(skipProcessingButton);
+
+        add(drawActualState);
 
         turingMachine = readTuringMachineTransitions.readFile(inputFilePath);
 
         actualState = turingMachine.getInitialState();
 
-        outputActualState.setText("Actual state: ".concat(actualState));
+        drawActualState.setText("Actual state: ".concat(actualState));
+        drawActualState.setEnabled(false);
 
     }
 
@@ -140,12 +152,12 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
             axisX = axisX + width;
         }
 
-        arrow.setBounds(100, 250, 30, 30); //escreve a seta apontando para primeira celula (estado inicial)
+        graphics.drawImage(arrowImageIcon.getImage(), 100, 250, null);
 
-        outputActualState.setBounds(100, 300, 130, 50); //escreve o estado atual na tela
-        outputActualState.setEnabled(false);
+        drawActualState.setBounds(100, 300, 130, 50); //escreve o estado atual na tela
 
         processorButton.setEnabled(true);
+        skipProcessingButton.setEnabled(true);
     }
 
     public void drawUpdate(Transition transition) {
@@ -165,10 +177,12 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
 
         if(transition.getDirection().equals("RIGHT")) {
-            arrow.setBounds(cellCoordinate.getXAxis() + width, 250, width, height);
+            graphics.clearRect(cellCoordinate.getXAxis(), 250, 20, 20);
+            graphics.drawImage(arrowImageIcon.getImage(), cellCoordinate.getXAxis() + width, 250, null);
             index += 1;
         } else {
-            arrow.setBounds(cellCoordinate.getXAxis() - width, 250, width, height);
+            graphics.clearRect(cellCoordinate.getXAxis(), 250, 20, 20);
+            graphics.drawImage(arrowImageIcon.getImage(), cellCoordinate.getXAxis() - width, 250, null);
             index -= 1;
         }
 
@@ -176,14 +190,34 @@ public class DrawTuringMachine extends JPanel implements ActionListener {
 
         cellCoordinate.setSymbol(Symbol.builder().character(transition.getWriteSymbol()).build()); //atualiza simbolo na transicao que está sendo processada de acordo com o novo simbolo que foi gravado na fita
 
-        outputActualState.setText("Actual state: ".concat(actualState));
+        drawActualState.setText("Actual state: ".concat(actualState));
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Optional<Transition> transition = processMachine();
-        transition.ifPresent(this::drawUpdate);
+        if(e.getActionCommand().equals("Processar")) {
+            Optional<Transition> transition = processMachine();
+            transition.ifPresent(this::drawUpdate);
+        } else {
+            processorButton.setEnabled(false);
+            skipProcessingButton.setEnabled(false);
+            new Thread(() -> {
+                Optional<Transition> transition = processMachine();
+
+                while (transition.isPresent()) {
+                    transition = processMachine();
+                    transition.ifPresent(this::drawUpdate);
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                System.out.println("acabou");
+            }).start();
+
+        }
     }
 
     private Optional<Transition> processMachine(){
