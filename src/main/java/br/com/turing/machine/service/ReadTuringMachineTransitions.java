@@ -24,10 +24,10 @@ public class ReadTuringMachineTransitions {
 
         TuringMachineValidator turingMachineValidator = new TuringMachineValidator(turingMachine);
 
-        if(turingMachineValidator.isValidMachine()) {
-            return turingMachine;
+        if(!turingMachineValidator.isValidMachine()) {
+            throw new TuringMachineException("Turing machine is not valid.");
         }
 
-        throw new TuringMachineException("Turing machine is not valid.");
+        return turingMachine;
     }
 }
