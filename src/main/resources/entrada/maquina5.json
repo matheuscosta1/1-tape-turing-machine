@@ -1,0 +1,138 @@
+{
+  "alfabeto": [
+    "0",
+    "1"
+  ],
+  "simbolos": [
+    "0",
+    "1",
+    "B"
+  ],
+  "transicoes": [
+    {
+      "simbolo": "0",
+      "escreve": "B",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q0",
+      "estadoDestino": "q1"
+    },
+    {
+      "simbolo": "0",
+      "escreve": "0",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q1",
+      "estadoDestino": "q1"
+    },
+    {
+      "simbolo": "1",
+      "escreve": "1",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q1",
+      "estadoDestino": "q2"
+    },
+    {
+      "simbolo": "1",
+      "escreve": "1",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q2",
+      "estadoDestino": "q2"
+    },
+    {
+      "simbolo": "0",
+      "escreve": "1",
+      "direcao": "LEFT",
+      "estadoOrigem": "q2",
+      "estadoDestino": "q3"
+    },
+    {
+      "simbolo": "0",
+      "escreve": "0",
+      "direcao": "LEFT",
+      "estadoOrigem": "q3",
+      "estadoDestino": "q3"
+    },
+    {
+      "simbolo": "1",
+      "escreve": "1",
+      "direcao": "LEFT",
+      "estadoOrigem": "q3",
+      "estadoDestino": "q3"
+    },
+    {
+      "simbolo": "B",
+      "escreve": "B",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q3",
+      "estadoDestino": "q0"
+    },
+    {
+      "simbolo": "B",
+      "escreve": "B",
+      "direcao": "LEFT",
+      "estadoOrigem": "q2",
+      "estadoDestino": "q4"
+    },
+    {
+      "simbolo": "0",
+      "escreve": "0",
+      "direcao": "LEFT",
+      "estadoOrigem": "q4",
+      "estadoDestino": "q4"
+    },
+    {
+      "simbolo": "1",
+      "escreve": "B",
+      "direcao": "LEFT",
+      "estadoOrigem": "q4",
+      "estadoDestino": "q4"
+    },
+    {
+      "simbolo": "B",
+      "escreve": "0",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q4",
+      "estadoDestino": "q6"
+    },
+    {
+      "simbolo": "1",
+      "escreve": "B",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q0",
+      "estadoDestino": "q5"
+    },
+    {
+      "simbolo": "0",
+      "escreve": "B",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q5",
+      "estadoDestino": "q5"
+    },
+    {
+      "simbolo": "1",
+      "escreve": "B",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q5",
+      "estadoDestino": "q5"
+    },
+    {
+      "simbolo": "B",
+      "escreve": "B",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q5",
+      "estadoDestino": "q6"
+    }
+  ],
+  "simboloBranco": "B",
+  "estadoInicial": "q0",
+  "estadosFinais": [
+  ],
+  "estados": [
+    "q0",
+    "q1",
+    "q2",
+    "q3",
+    "q4",
+    "q5",
+    "q6"
+  ]
+}
