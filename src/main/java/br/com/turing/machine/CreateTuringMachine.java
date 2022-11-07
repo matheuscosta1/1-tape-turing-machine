@@ -45,13 +45,15 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
 
     TuringMachineResponse turingMachineResponse = new TuringMachineResponse();
 
-    String inputFilePath = "classpath:entrada/maquina-2-calcula-m-menos-n-0^m10^n.json";
+    String inputFilePath = "classpath:entrada/maquina-2-apresentacao-07-11-a^nb^nc^n.json";
 
     CreateTuringMachine() throws Exception {
         setLayout(null);
 
         turingMachine = readTuringMachineTransitions.readFile(inputFilePath);
         turingMachine.setName(inputFilePath.replace("classpath:entrada/", ""));
+        turingMachineResponse.setMaquinaTuring(turingMachine);
+
         actualState = turingMachine.getInitialState();
 
         drawActualState = new JTextField("", 30);
@@ -100,7 +102,11 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
         String initialSymbol = turingMachine.getStartMaker();
         String word = userInputWord.getText();
 
+        turingMachineResponse.setCadeia(word);
+
         if(!turingMachineValidator.isValidWord(word)) {
+            turingMachineResponse.setStatus("INVÁLIDO");
+            writeTuringMachineResponseToFile(turingMachineResponse);
             JOptionPane.showMessageDialog(null, "Algum símbolo da cadeia não pertence ao alfabeto.");
             System.exit(0);
         }
@@ -276,7 +282,6 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
             transition.ifPresent(this::updateTapeDraw);
         } else {
             validateTuringMachineAcceptsWord();
-            turingMachineResponse.setMaquinaTuring(turingMachine);
             writeTuringMachineResponseToFile(turingMachineResponse);
         }
     }
@@ -295,7 +300,6 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
                 }
             }
             validateTuringMachineAcceptsWord();
-            turingMachineResponse.setMaquinaTuring(turingMachine);
             try {
                 writeTuringMachineResponseToFile(turingMachineResponse);
             } catch (IOException e) {
@@ -308,10 +312,10 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
     private void validateTuringMachineAcceptsWord() {
         if(turingMachine.hasFinalStates()) {
             if(turingMachine.isWordAccepted(actualState)) {
-                turingMachineResponse.setStatus("ACEITA");
+                turingMachineResponse.setStatus("ACEITO");
                 JOptionPane.showMessageDialog(null, "A cadeia foi aceita.");
             } else {
-                turingMachineResponse.setStatus("REJEITA");
+                turingMachineResponse.setStatus("REJEITADO");
                 JOptionPane.showMessageDialog(null, "A cadeia foi rejeitada.");
             }
         } else {

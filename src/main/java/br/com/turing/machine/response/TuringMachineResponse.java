@@ -15,6 +15,7 @@ import java.util.List;
 public class TuringMachineResponse implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private String cadeia;
   private TuringMachine maquinaTuring;
   private List<TuringMachineProcessingResponse> processamento = new ArrayList<>();
   private String status;
