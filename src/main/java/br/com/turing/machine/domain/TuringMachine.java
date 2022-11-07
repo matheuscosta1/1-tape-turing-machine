@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,9 @@ import java.util.Optional;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TuringMachine {
+public class TuringMachine implements Serializable {
+  @JsonProperty("nome")
+  private String name;
 
   @JsonProperty("transicoes")
   private List<Transition> transitions;
@@ -39,14 +42,15 @@ public class TuringMachine {
   @JsonProperty("marcadorInicio")
   private String startMaker;
 
+  @JsonProperty("éSimboloBrancoVálido")
   public boolean isValidWhiteSymbol() {
     return symbols.stream().anyMatch(symbol -> symbol.getCharacter().equals(whiteSymbol));
   }
-
+  @JsonProperty("éEstadoInicialVálido")
   public boolean isValidInitialState() {
     return states.stream().anyMatch(state -> state.getName().equals(initialState));
   }
-
+  @JsonProperty("éEstadosFinaisVálidos")
   public boolean isValidFinalState() {
     return finalStates.stream().allMatch(finalState -> states.stream().anyMatch(state -> state.getName().equals(finalState.getName())));
   }

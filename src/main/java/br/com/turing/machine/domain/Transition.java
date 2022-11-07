@@ -3,12 +3,14 @@ package br.com.turing.machine.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Transition {
+public class Transition implements Serializable  {
 
   @JsonProperty("simbolo")
   private String symbolRead;

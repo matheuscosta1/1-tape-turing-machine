@@ -1,130 +1,136 @@
 {
   "alfabeto": [
-    "0",
-    "1"
+    "a",
+    "b",
+    "c"
   ],
   "simbolos": [
-    "0",
-    "1",
+    "a",
+    "b",
+    "c",
+    "x",
+    "y",
+    "z",
     "B"
   ],
   "transicoes": [
     {
-      "simbolo": "0",
-      "escreve": "B",
+      "simbolo": "a",
+      "escreve": "x",
       "direcao": "RIGHT",
       "estadoOrigem": "q0",
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "0",
-      "escreve": "0",
+      "simbolo": "a",
+      "escreve": "a",
       "direcao": "RIGHT",
       "estadoOrigem": "q1",
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "1",
-      "escreve": "1",
+      "simbolo": "b",
+      "escreve": "y",
       "direcao": "RIGHT",
       "estadoOrigem": "q1",
       "estadoDestino": "q2"
     },
     {
-      "simbolo": "1",
-      "escreve": "1",
+      "simbolo": "b",
+      "escreve": "b",
       "direcao": "RIGHT",
       "estadoOrigem": "q2",
       "estadoDestino": "q2"
     },
     {
-      "simbolo": "0",
-      "escreve": "1",
+      "simbolo": "c",
+      "escreve": "z",
       "direcao": "LEFT",
       "estadoOrigem": "q2",
       "estadoDestino": "q3"
     },
     {
-      "simbolo": "0",
-      "escreve": "0",
+      "simbolo": "b",
+      "escreve": "b",
       "direcao": "LEFT",
       "estadoOrigem": "q3",
       "estadoDestino": "q3"
     },
     {
-      "simbolo": "1",
-      "escreve": "1",
+      "simbolo": "y",
+      "escreve": "y",
       "direcao": "LEFT",
       "estadoOrigem": "q3",
       "estadoDestino": "q3"
     },
     {
-      "simbolo": "B",
-      "escreve": "B",
+      "simbolo": "a",
+      "escreve": "a",
+      "direcao": "LEFT",
+      "estadoOrigem": "q3",
+      "estadoDestino": "q3"
+    },
+    {
+      "simbolo": "x",
+      "escreve": "x",
       "direcao": "RIGHT",
       "estadoOrigem": "q3",
       "estadoDestino": "q0"
     },
     {
-      "simbolo": "B",
-      "escreve": "B",
-      "direcao": "LEFT",
-      "estadoOrigem": "q2",
-      "estadoDestino": "q4"
-    },
-    {
-      "simbolo": "0",
-      "escreve": "0",
-      "direcao": "LEFT",
-      "estadoOrigem": "q4",
-      "estadoDestino": "q4"
-    },
-    {
-      "simbolo": "1",
-      "escreve": "B",
-      "direcao": "LEFT",
-      "estadoOrigem": "q4",
-      "estadoDestino": "q4"
-    },
-    {
-      "simbolo": "B",
-      "escreve": "0",
+      "simbolo": "y",
+      "escreve": "y",
       "direcao": "RIGHT",
-      "estadoOrigem": "q4",
-      "estadoDestino": "q6"
+      "estadoOrigem": "q1",
+      "estadoDestino": "q1"
     },
     {
-      "simbolo": "1",
-      "escreve": "B",
+      "simbolo": "z",
+      "escreve": "z",
+      "direcao": "RIGHT",
+      "estadoOrigem": "q2",
+      "estadoDestino": "q2"
+    },
+    {
+      "simbolo": "z",
+      "escreve": "z",
+      "direcao": "LEFT",
+      "estadoOrigem": "q3",
+      "estadoDestino": "q3"
+    },
+    {
+      "simbolo": "y",
+      "escreve": "y",
       "direcao": "RIGHT",
       "estadoOrigem": "q0",
-      "estadoDestino": "q5"
+      "estadoDestino": "q4"
     },
     {
-      "simbolo": "0",
-      "escreve": "B",
+      "simbolo": "y",
+      "escreve": "y",
       "direcao": "RIGHT",
-      "estadoOrigem": "q5",
-      "estadoDestino": "q5"
+      "estadoOrigem": "q4",
+      "estadoDestino": "q4"
     },
     {
-      "simbolo": "1",
-      "escreve": "B",
+      "simbolo": "z",
+      "escreve": "z",
       "direcao": "RIGHT",
-      "estadoOrigem": "q5",
-      "estadoDestino": "q5"
+      "estadoOrigem": "q4",
+      "estadoDestino": "q4"
     },
     {
       "simbolo": "B",
       "escreve": "B",
       "direcao": "RIGHT",
-      "estadoOrigem": "q5",
-      "estadoDestino": "q6"
+      "estadoOrigem": "q4",
+      "estadoDestino": "q5"
     }
   ],
   "simboloBranco": "B",
   "estadoInicial": "q0",
   "estadosFinais": [
+    "q5"
   ],
   "estados": [
     "q0",
@@ -132,7 +138,6 @@
     "q2",
     "q3",
     "q4",
-    "q5",
-    "q6"
+    "q5"
   ]
 }

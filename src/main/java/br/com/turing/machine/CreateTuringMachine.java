@@ -1,7 +1,10 @@
 package br.com.turing.machine;
 
 import br.com.turing.machine.domain.*;
+import br.com.turing.machine.response.TuringMachineProcessingResponse;
+import br.com.turing.machine.response.TuringMachineResponse;
 import br.com.turing.machine.validator.TuringMachineValidator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 
@@ -9,7 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 public class CreateTuringMachine extends JPanel implements ActionListener {
@@ -38,11 +43,15 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
     JLabel arrow;
     JTextField drawActualState;
 
+    TuringMachineResponse turingMachineResponse = new TuringMachineResponse();
+
+    String inputFilePath = "classpath:entrada/maquina-2-calcula-m-menos-n-0^m10^n.json";
+
     CreateTuringMachine() throws Exception {
         setLayout(null);
 
-        String inputFilePath = "classpath:entrada/maquina-2.json";
         turingMachine = readTuringMachineTransitions.readFile(inputFilePath);
+        turingMachine.setName(inputFilePath.replace("classpath:entrada/", ""));
         actualState = turingMachine.getInitialState();
 
         drawActualState = new JTextField("", 30);
@@ -99,8 +108,12 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
         String wordWithInitialState = initialSymbol != null ? initialSymbol.concat(word) : word;
 
         int quantityOfBlankSymbols = QUANTITY_OF_TAPE_CELL - wordWithInitialState.length();
+        int quantityOfBlankSymbolsOnTheLeftSide = quantityOfBlankSymbols / 2;
+        int quantityOfBlankSymbolsOnTheRightSide = quantityOfBlankSymbols - quantityOfBlankSymbolsOnTheLeftSide;
 
-        String wordWithBlankSymbols = wordWithInitialState.concat("B".repeat(quantityOfBlankSymbols));
+        String wordWithBlankSymbols = "B".repeat(quantityOfBlankSymbolsOnTheLeftSide).concat(wordWithInitialState.concat("B".repeat(quantityOfBlankSymbolsOnTheRightSide)));
+
+        index = quantityOfBlankSymbolsOnTheLeftSide;
 
         tapeDraw(wordWithBlankSymbols);
     }
@@ -130,12 +143,18 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
             axisX = movesOnAxisXForEachCell(axisX);
         }
 
-        graphics.drawImage(arrowImageIcon.getImage(), 100, 130, null);
+        drawInitialArrowOnTape(graphics);
 
         drawBeginningActualState();
 
         processorButton.setEnabled(true);
         skipProcessingButton.setEnabled(true);
+    }
+
+    private void drawInitialArrowOnTape(Graphics graphics) {
+        CellTape cellTape = tape.get(index);
+
+        graphics.drawImage(arrowImageIcon.getImage(), cellTape.getXAxis(), 130, null);
     }
 
     private void saveEachCellTapeCoordinate(int axisX, int axisY, char actualCharacter, int drawStringYAxis) {
@@ -153,7 +172,7 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
     }
 
     private void drawBeginningActualState() {
-        drawActualState.setText("Actual state: ".concat(actualState));
+        drawActualState.setText("Estado atual: ".concat(actualState));
         drawActualState.setBounds(100, 200, 130, 50);
     }
 
@@ -163,6 +182,7 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
     }
 
     public void updateTapeDraw(Transition transition) {
+
         Graphics graphics = getGraphics();
         graphics.setFont(new Font("", Font.PLAIN, FONT_SIZE));
 
@@ -170,17 +190,33 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
 
         clearOldRectTapeAndDrawNewRectWithNewSymbol(transition, graphics, cellTapeCoordinate);
 
-        movesToTheLeftOrTheRightOnTapeBasedOnTransactionDirection(transition, graphics, cellTapeCoordinate);
+        movesToTheLeftOrTheRightOnTapeBasedOnTransitionDirection(transition, graphics, cellTapeCoordinate);
+
+
+        constructTuringMachineResponse(transition, cellTapeCoordinate);
 
         actualState = transition.getDestinyState();
 
         updateActualSymbolReadFromTapeInTapeCoordinateList(transition, cellTapeCoordinate);
 
-        drawActualState.setText("Actual state: ".concat(actualState));
+        drawActualState.setText("Estado atual: ".concat(actualState));
 
     }
 
-    private void movesToTheLeftOrTheRightOnTapeBasedOnTransactionDirection(Transition transition, Graphics graphics, CellTape cellTapeCoordinate) {
+    private void constructTuringMachineResponse(Transition transition, CellTape cellTapeCoordinate) {
+        TuringMachineProcessingResponse turingMachineProcessingResponse = TuringMachineProcessingResponse
+                .builder()
+                .estadoAtual(actualState)
+                .leSimbolo(cellTapeCoordinate.getSymbol().getCharacter())
+                .escreveSimbolo(transition.getWriteSymbol())
+                .estadoDestino(transition.getDestinyState())
+                .direcao(transition.getDirection().name())
+                .build();
+
+        turingMachineResponse.getProcessamento().add(turingMachineProcessingResponse);
+    }
+
+    private void movesToTheLeftOrTheRightOnTapeBasedOnTransitionDirection(Transition transition, Graphics graphics, CellTape cellTapeCoordinate) {
         if(Direction.RIGHT.equals(transition.getDirection())) {
             graphics.clearRect(cellTapeCoordinate.getXAxis(), 130, WIDTH, HEIGHT);
             graphics.drawImage(arrowImageIcon.getImage(), cellTapeCoordinate.getXAxis() + WIDTH, 130, null);
@@ -208,7 +244,11 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(PROCESSOR_EVENT)) {
             Optional<Transition> transition = processMachine();
-            processTuringMachineOneStepPerTime(transition);
+            try {
+                processTuringMachineOneStepPerTime(transition);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else {
             processorButton.setEnabled(false);
             skipProcessingButton.setEnabled(false);
@@ -217,11 +257,27 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
         }
     }
 
-    private void processTuringMachineOneStepPerTime(Optional<Transition> transition) {
+    private void writeTuringMachineResponseToFile(TuringMachineResponse turingMachineResponse) throws IOException {
+        String outputPath = "saida/".concat(LocalDateTime.now().toString()).concat(".json");
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(turingMachineResponse);
+
+        mapper.writeValue(new File(outputPath), json);
+
+        System.out.println("Processamento terminou.\n");
+
+        System.out.println(json);
+    }
+
+    private void processTuringMachineOneStepPerTime(Optional<Transition> transition) throws IOException {
         if(transition.isPresent()) {
             transition.ifPresent(this::updateTapeDraw);
         } else {
             validateTuringMachineAcceptsWord();
+            turingMachineResponse.setMaquinaTuring(turingMachine);
+            writeTuringMachineResponseToFile(turingMachineResponse);
         }
     }
 
@@ -239,20 +295,29 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
                 }
             }
             validateTuringMachineAcceptsWord();
+            turingMachineResponse.setMaquinaTuring(turingMachine);
+            try {
+                writeTuringMachineResponseToFile(turingMachineResponse);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
         }).start();
     }
 
     private void validateTuringMachineAcceptsWord() {
         if(turingMachine.hasFinalStates()) {
             if(turingMachine.isWordAccepted(actualState)) {
+                turingMachineResponse.setStatus("ACEITA");
                 JOptionPane.showMessageDialog(null, "A cadeia foi aceita.");
             } else {
+                turingMachineResponse.setStatus("REJEITA");
                 JOptionPane.showMessageDialog(null, "A cadeia foi rejeitada.");
             }
         } else {
+            turingMachineResponse.setStatus("PROCESSADO");
             JOptionPane.showMessageDialog(null, "O processamento terminou.");
         }
-
     }
 
     private Optional<Transition> processMachine(){
