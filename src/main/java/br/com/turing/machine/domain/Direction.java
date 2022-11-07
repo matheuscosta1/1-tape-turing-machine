@@ -1,6 +1,8 @@
 package br.com.turing.machine.domain;
 
-public enum Direction {
+import java.io.Serializable;
+
+public enum Direction implements Serializable {
   RIGHT,
   LEFT
 }
