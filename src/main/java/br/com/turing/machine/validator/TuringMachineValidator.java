@@ -20,6 +20,11 @@ public class TuringMachineValidator {
     }
 
     public boolean isValidWord(String word) {
+
+        if(word.equals("")) {
+            return true;
+        }
+
         return Arrays.stream(word.split("")).allMatch(character -> turingMachine.getAlphabet().stream().anyMatch(alphabet -> alphabet.getCharacter().equals(character)));
     }
 }
