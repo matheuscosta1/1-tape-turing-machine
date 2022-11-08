@@ -111,13 +111,15 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
             System.exit(0);
         }
 
-        String wordWithInitialState = initialSymbol != null ? initialSymbol.concat(word) : word;
+        String wordWithInitialSymbol = initialSymbol != null ? initialSymbol.concat(word) : word;
 
-        int quantityOfBlankSymbols = QUANTITY_OF_TAPE_CELL - wordWithInitialState.length();
+        int quantityOfBlankSymbols = QUANTITY_OF_TAPE_CELL - wordWithInitialSymbol.length();
         int quantityOfBlankSymbolsOnTheLeftSide = quantityOfBlankSymbols / 2;
         int quantityOfBlankSymbolsOnTheRightSide = quantityOfBlankSymbols - quantityOfBlankSymbolsOnTheLeftSide;
 
-        String wordWithBlankSymbols = "B".repeat(quantityOfBlankSymbolsOnTheLeftSide).concat(wordWithInitialState.concat("B".repeat(quantityOfBlankSymbolsOnTheRightSide)));
+        String whiteSymbol = turingMachine.getWhiteSymbol();
+
+        String wordWithBlankSymbols = whiteSymbol.repeat(quantityOfBlankSymbolsOnTheLeftSide).concat(wordWithInitialSymbol.concat(whiteSymbol.repeat(quantityOfBlankSymbolsOnTheRightSide)));
 
         index = quantityOfBlankSymbolsOnTheLeftSide;
 
