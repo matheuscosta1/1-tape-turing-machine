@@ -1,0 +1,64 @@
+nomeMaquina: maquina-1-0^n1^n
+
+
+00001111 -> valido
+0000111 -> nao valido
+cadeia vazia -> valido 
+
+------------------------------------------------------------------------
+
+nomeMaquina: maquina-2-calcula-m-menos-n-0^m10^n
+
+0000100 -> valido
+00100 -> dá zero
+
+------------------------------------------------------------------------
+nomeMaquina: maquina-1-apresentacao-07-11-a^nb^n
+
+aaaabbbb -> valido
+aaaabbb -> invalido
+
+------------------------------------------------------------------------
+nomeMaquina: maquina-2-apresentacao-07-11-a^nb^nc^n
+
+aaabbbccc -> valido
+aaabbbcc -> invalido
+------------------------------------------------------------------------
+maquina-4-existe-c-em-subcadeia-de-ab-aacbb
+
+abcba -> valido
+
+
+------------------------------------------------------------------------
+Apresentaao 08-11 (exemplos)
+
+
+Teste 1 da apresentacao (w c w reverso)
+
+nomeMaquina: maquina-1-apresentacao-08-11
+
+
+Exemplo: 
+
+abcba -> valido
+abababcbababa -> valido
+abcab -> invalido
+
+Teste2 da apresentacao
+
+maquina-3-apresentacao-07-11 (valida se o numero a esquerda é maior ou igual ao segundo)
+
+1111011 -> 4 é maior que 2
+110111 -> 2 é menor que 3
+
+
+Teste 3 da apresentacao 08-11 (fazendo soma)
+
+maquina-3-apresentacao-08-11
+
+1111011 -> valido
+1101 -> valido
+
+
+
+

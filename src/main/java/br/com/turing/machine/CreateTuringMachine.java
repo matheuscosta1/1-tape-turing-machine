@@ -45,7 +45,7 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
 
     TuringMachineResponse turingMachineResponse = new TuringMachineResponse();
 
-    String inputFilePath = "classpath:entrada/maquina-2-calcula-m-menos-n-0^m10^n.json";
+    String inputFilePath = "classpath:entrada/maquina-3-apresentacao-07-11.json";
 
     CreateTuringMachine() throws Exception {
         setLayout(null);
@@ -199,7 +199,6 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
         clearOldRectTapeAndDrawNewRectWithNewSymbol(transition, graphics, cellTapeCoordinate);
 
         movesToTheLeftOrTheRightOnTapeBasedOnTransitionDirection(transition, graphics, cellTapeCoordinate);
-
 
         constructTuringMachineResponse(transition, cellTapeCoordinate);
 
