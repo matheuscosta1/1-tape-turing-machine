@@ -10,112 +10,112 @@
 	],
 	"transicoes": [
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q1"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "0",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q1",
 			"estadoDestino": "q1"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "1",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q1",
 			"estadoDestino": "q2"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "1",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q2",
 			"estadoDestino": "q2"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "1",
 			"direcao": "LEFT",
 			"estadoOrigem": "q2",
 			"estadoDestino": "q3"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "0",
 			"direcao": "LEFT",
 			"estadoOrigem": "q3",
 			"estadoDestino": "q3"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "1",
 			"direcao": "LEFT",
 			"estadoOrigem": "q3",
 			"estadoDestino": "q3"
 		},
 		{
-			"simbolo": "B",
+			"leSimbolo": "B",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q3",
 			"estadoDestino": "q0"
 		},
 		{
-			"simbolo": "B",
+			"leSimbolo": "B",
 			"escreve": "B",
 			"direcao": "LEFT",
 			"estadoOrigem": "q2",
 			"estadoDestino": "q4"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "0",
 			"direcao": "LEFT",
 			"estadoOrigem": "q4",
 			"estadoDestino": "q4"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "B",
 			"direcao": "LEFT",
 			"estadoOrigem": "q4",
 			"estadoDestino": "q4"
 		},
 		{
-			"simbolo": "B",
+			"leSimbolo": "B",
 			"escreve": "0",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q4",
 			"estadoDestino": "q6"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q5"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q5",
 			"estadoDestino": "q5"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q5",
 			"estadoDestino": "q5"
 		},
 		{
-			"simbolo": "B",
+			"leSimbolo": "B",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q5",

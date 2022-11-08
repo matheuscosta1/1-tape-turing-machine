@@ -45,7 +45,7 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
 
     TuringMachineResponse turingMachineResponse = new TuringMachineResponse();
 
-    String inputFilePath = "classpath:entrada/maquina-1-0^n1^n.json";
+    String inputFilePath = "classpath:entrada/maquina-2-calcula-m-menos-n-0^m10^n.json";
 
     CreateTuringMachine() throws Exception {
         setLayout(null);

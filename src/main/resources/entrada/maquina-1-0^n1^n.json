@@ -12,84 +12,84 @@
 	],
 	"transicoes": [
 		{
-			"simbolo": "*",
+			"leSimbolo": "*",
 			"escreve": "*",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q0"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "X",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q1"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "0",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q1",
 			"estadoDestino": "q1"
 		},
 		{
-			"simbolo": "Y",
+			"leSimbolo": "Y",
 			"escreve": "Y",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q1",
 			"estadoDestino": "q1"
 		},
 		{
-			"simbolo": "1",
+			"leSimbolo": "1",
 			"escreve": "Y",
 			"direcao": "LEFT",
 			"estadoOrigem": "q1",
 			"estadoDestino": "q2"
 		},
 		{
-			"simbolo": "0",
+			"leSimbolo": "0",
 			"escreve": "0",
 			"direcao": "LEFT",
 			"estadoOrigem": "q2",
 			"estadoDestino": "q2"
 		},
 		{
-			"simbolo": "Y",
+			"leSimbolo": "Y",
 			"escreve": "Y",
 			"direcao": "LEFT",
 			"estadoOrigem": "q2",
 			"estadoDestino": "q2"
 		},
 		{
-			"simbolo": "X",
+			"leSimbolo": "X",
 			"escreve": "X",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q2",
 			"estadoDestino": "q0"
 		},
 		{
-			"simbolo": "B",
+			"leSimbolo": "B",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q4"
 		},
 		{
-			"simbolo": "Y",
+			"leSimbolo": "Y",
 			"escreve": "Y",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q0",
 			"estadoDestino": "q3"
 		},
 		{
-			"simbolo": "Y",
+			"leSimbolo": "Y",
 			"escreve": "Y",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q3",
 			"estadoDestino": "q3"
 		},
 		{
-			"simbolo": "B",
+			"leSimbolo": "B",
 			"escreve": "B",
 			"direcao": "RIGHT",
 			"estadoOrigem": "q3",

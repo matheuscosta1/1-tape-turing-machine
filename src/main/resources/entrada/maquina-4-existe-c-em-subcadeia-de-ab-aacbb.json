@@ -14,168 +14,168 @@
   ],
   "transicoes": [
     {
-      "simbolo": "a",
+      "leSimbolo": "a",
       "escreve": "x",
       "direcao": "RIGHT",
       "estadoOrigem": "q0",
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "a",
+      "leSimbolo": "a",
       "escreve": "a",
       "direcao": "RIGHT",
       "estadoOrigem": "q1",
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "b",
+      "leSimbolo": "b",
       "escreve": "b",
       "direcao": "RIGHT",
       "estadoOrigem": "q1",
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "c",
+      "leSimbolo": "c",
       "escreve": "c",
       "direcao": "RIGHT",
       "estadoOrigem": "q1",
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "y",
+      "leSimbolo": "y",
       "escreve": "y",
       "direcao": "LEFT",
       "estadoOrigem": "q1",
       "estadoDestino": "q3"
     },
     {
-      "simbolo": "x",
+      "leSimbolo": "x",
       "escreve": "x",
       "direcao": "LEFT",
       "estadoOrigem": "q1",
       "estadoDestino": "q3"
     },
     {
-      "simbolo": "B",
+      "leSimbolo": "B",
       "escreve": "B",
       "direcao": "LEFT",
       "estadoOrigem": "q1",
       "estadoDestino": "q3"
     },
     {
-      "simbolo": "a",
+      "leSimbolo": "a",
       "escreve": "x",
       "direcao": "LEFT",
       "estadoOrigem": "q3",
       "estadoDestino": "q5"
     },
     {
-      "simbolo": "c",
+      "leSimbolo": "c",
       "escreve": "c",
       "direcao": "LEFT",
       "estadoOrigem": "q5",
       "estadoDestino": "q5"
     },
     {
-      "simbolo": "b",
+      "leSimbolo": "b",
       "escreve": "b",
       "direcao": "LEFT",
       "estadoOrigem": "q5",
       "estadoDestino": "q5"
     },
     {
-      "simbolo": "a",
+      "leSimbolo": "a",
       "escreve": "a",
       "direcao": "LEFT",
       "estadoOrigem": "q5",
       "estadoDestino": "q5"
     },
     {
-      "simbolo": "x",
+      "leSimbolo": "x",
       "escreve": "x",
       "direcao": "RIGHT",
       "estadoOrigem": "q5",
       "estadoDestino": "q0"
     },
     {
-      "simbolo": "y",
+      "leSimbolo": "y",
       "escreve": "y",
       "direcao": "RIGHT",
       "estadoOrigem": "q5",
       "estadoDestino": "q0"
     },
     {
-      "simbolo": "b",
+      "leSimbolo": "b",
       "escreve": "y",
       "direcao": "RIGHT",
       "estadoOrigem": "q0",
       "estadoDestino": "q2"
     },
     {
-      "simbolo": "c",
+      "leSimbolo": "c",
       "escreve": "c",
       "direcao": "RIGHT",
       "estadoOrigem": "q2",
       "estadoDestino": "q2"
     },
     {
-      "simbolo": "b",
+      "leSimbolo": "b",
       "escreve": "b",
       "direcao": "RIGHT",
       "estadoOrigem": "q2",
       "estadoDestino": "q2"
     },
     {
-      "simbolo": "a",
+      "leSimbolo": "a",
       "escreve": "a",
       "direcao": "RIGHT",
       "estadoOrigem": "q2",
       "estadoDestino": "q2"
     },
     {
-      "simbolo": "y",
+      "leSimbolo": "y",
       "escreve": "y",
       "direcao": "LEFT",
       "estadoOrigem": "q2",
       "estadoDestino": "q4"
     },
     {
-      "simbolo": "x",
+      "leSimbolo": "x",
       "escreve": "x",
       "direcao": "LEFT",
       "estadoOrigem": "q2",
       "estadoDestino": "q4"
     },
     {
-      "simbolo": "B",
+      "leSimbolo": "B",
       "escreve": "B",
       "direcao": "LEFT",
       "estadoOrigem": "q2",
       "estadoDestino": "q4"
     },
     {
-      "simbolo": "b",
+      "leSimbolo": "b",
       "escreve": "y",
       "direcao": "LEFT",
       "estadoOrigem": "q4",
       "estadoDestino": "q5"
     },
     {
-      "simbolo": "c",
+      "leSimbolo": "c",
       "escreve": "c",
       "direcao": "RIGHT",
       "estadoOrigem": "q0",
       "estadoDestino": "q6"
     },
     {
-      "simbolo": "x",
+      "leSimbolo": "x",
       "escreve": "x",
       "direcao": "RIGHT",
       "estadoOrigem": "q6",
       "estadoDestino": "q6"
     },
     {
-      "simbolo": "y",
+      "leSimbolo": "y",
       "escreve": "y",
       "direcao": "RIGHT",
       "estadoOrigem": "q6",
@@ -183,7 +183,7 @@
     },
 
     {
-      "simbolo": "B",
+      "leSimbolo": "B",
       "escreve": "B",
       "direcao": "RIGHT",
       "estadoOrigem": "q6",

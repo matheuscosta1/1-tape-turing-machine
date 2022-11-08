@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Builder
 public class Transition implements Serializable  {
 
-  @JsonProperty("simbolo")
+  @JsonProperty("leSimbolo")
   private String symbolRead;
 
   @JsonProperty("escreve")

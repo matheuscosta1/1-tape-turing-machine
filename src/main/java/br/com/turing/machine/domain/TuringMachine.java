@@ -1,5 +1,6 @@
 package br.com.turing.machine.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -42,15 +43,15 @@ public class TuringMachine implements Serializable {
   @JsonProperty("marcadorInicio")
   private String startMaker;
 
-  @JsonProperty("éSimboloBrancoVálido")
+  @JsonIgnore
   public boolean isValidWhiteSymbol() {
     return symbols.stream().anyMatch(symbol -> symbol.getCharacter().equals(whiteSymbol));
   }
-  @JsonProperty("éEstadoInicialVálido")
+  @JsonIgnore
   public boolean isValidInitialState() {
     return states.stream().anyMatch(state -> state.getName().equals(initialState));
   }
-  @JsonProperty("éEstadosFinaisVálidos")
+  @JsonIgnore
   public boolean isValidFinalState() {
     return finalStates.stream().allMatch(finalState -> states.stream().anyMatch(state -> state.getName().equals(finalState.getName())));
   }
