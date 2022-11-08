@@ -21,8 +21,8 @@
       "estadoDestino": "q1"
     },
     {
-      "simbolo": "c",
-      "escreve": "c",
+      "simbolo": "a",
+      "escreve": "a",
       "direcao": "RIGHT",
       "estadoOrigem": "q1",
       "estadoDestino": "q1"
