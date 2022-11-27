@@ -1,0 +1,14 @@
+q0,X=q0,X,RIGHT
+q0,0=q1,X,RIGHT
+q1,X=q1,X,RIGHT
+q1,0=q1,0,RIGHT
+q1,1=q3,X,LEFT
+q3,0=q3,0,LEFT
+q3,X=q3,X,LEFT
+q3,1=q3,1,LEFT
+q3,B=q0,B,RIGHT
+q0,B=qf,B,LEFT
+q0,1=q2,X,RIGHT
+q2,1=q2,1,RIGHT
+q2,X=q2,X,RIGHT
+q2,0=q3,X,LEFT
