@@ -303,10 +303,10 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
                     throw new RuntimeException(ex);
                 }
             }
+            long elapsed = System.currentTimeMillis() - start;
+            turingMachineResponse.setExecutionTime((elapsed/ 1000d));
             validateTuringMachineAcceptsWord();
             try {
-                long elapsed = System.currentTimeMillis() - start;
-                turingMachineResponse.setExecutionTime((elapsed/ 1000d));
                 writeTuringMachineResponseToFile(turingMachineResponse);
             } catch (IOException e) {
                 throw new RuntimeException(e);
