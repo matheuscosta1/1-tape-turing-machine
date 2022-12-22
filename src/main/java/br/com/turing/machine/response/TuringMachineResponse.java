@@ -19,5 +19,6 @@ public class TuringMachineResponse implements Serializable {
   private TuringMachine maquinaTuring;
   private List<TuringMachineProcessingResponse> processamento = new ArrayList<>();
   private String status;
+  private Double executionTime;
 
 }

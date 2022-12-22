@@ -21,6 +21,7 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
     private static final int HEIGHT = 20;
     private static final int WIDTH = 20;
     private static final int FONT_SIZE = 20;
+    private static final int SLEEP_TIME = 0;
     private static final int QUANTITY_OF_TAPE_CELL = 74;
     public static final String PROCESSOR_EVENT = "Processar";
     private final String arrowImageFilePath = "classpath:images/arrow.png";
@@ -45,7 +46,7 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
 
     TuringMachineResponse turingMachineResponse = new TuringMachineResponse();
 
-    String inputFilePath = "classpath:entrada/numero-igual-0s-1s.json";
+    String inputFilePath = "classpath:entrada/maquina-2-apresentacao-07-11-a^nb^nc^n.json";
 
     CreateTuringMachine() throws Exception {
         setLayout(null);
@@ -289,19 +290,23 @@ public class CreateTuringMachine extends JPanel implements ActionListener {
 
     private void processTuringMachineStepByStepTillTheEnd() {
         new Thread(() -> {
+            long start = System.currentTimeMillis();
+
             Optional<Transition> transition = processMachine();
 
             while (transition.isPresent()) {
                 transition = processMachine();
                 transition.ifPresent(this::updateTapeDraw);
                 try {
-                    Thread.sleep(1200);
+                    Thread.sleep(SLEEP_TIME);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
             }
             validateTuringMachineAcceptsWord();
             try {
+                long elapsed = System.currentTimeMillis() - start;
+                turingMachineResponse.setExecutionTime((elapsed/ 1000d));
                 writeTuringMachineResponseToFile(turingMachineResponse);
             } catch (IOException e) {
                 throw new RuntimeException(e);

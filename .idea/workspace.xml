@@ -1,12 +1,264 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dbffda1a-3483-4de1-9fdd-07747bd494eb" name="Changes" comment="Cria mecanismo para ler transicoes de um arquivo e montar lista de transicoes para a maquina de turing">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:07:57.528361856.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:35:41.924107578.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:36:56.589556420.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:38:24.254990660.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:39:09.108219845.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:41:27.469092593.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:44:50.520539050.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T13:58:51.518524476.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T14:16:50.861386991.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T14:19:07.333410773.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saida/2022-11-08T14:21:10.083088024.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/turing/machine/CreateTuringMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/turing/machine/CreateTuringMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/turing/machine/response/TuringMachineResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/turing/machine/response/TuringMachineResponse.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HEr5FzIbvojoiWhG2LCqebkNYV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "/home/matheus/Github/personal/turing-machine",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "spring.configuration.checksum": "f7c9bc2724e49bb7d4bb14935bd63f09"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/entrada" />
+      <recent name="$PROJECT_DIR$/src/main/resources/transicoes" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="br.com.turing.machine" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.turing.machine" />
+      <recent name="br.com.turing.machine.response" />
+      <recent name="br.com.turing.machine.domain" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="TuringMachineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="ReadTransitionsFromFileTest.shouldReadFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="turing-machine" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.turing.machine.TuringMachineApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.turing.machine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.turing.machine" />
+      <option name="MAIN_CLASS_NAME" value="br.com.turing.machine.ReadTransitionsFromFileTest" />
+      <option name="METHOD_NAME" value="shouldReadFile" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ReadTransitionsFromFileTest.shouldReadFile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dbffda1a-3483-4de1-9fdd-07747bd494eb" name="Changes" comment="" />
+      <created>1667860902150</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667860902150</updated>
+      <workItem from="1667860902152" duration="2766000" />
+      <workItem from="1667911837467" duration="10476000" />
+      <workItem from="1667939447717" duration="795000" />
+      <workItem from="1667941863517" duration="37000" />
+      <workItem from="1668024026505" duration="17000" />
+      <workItem from="1669302358486" duration="1331000" />
+      <workItem from="1669309864996" duration="634000" />
+      <workItem from="1669560243796" duration="4260000" />
+      <workItem from="1669750419255" duration="10719000" />
+      <workItem from="1669810202362" duration="1519000" />
+      <workItem from="1669850500991" duration="2801000" />
+      <workItem from="1669947530459" duration="16000" />
+      <workItem from="1670088519199" duration="13000" />
+      <workItem from="1670846794199" duration="1290000" />
+    </task>
+    <task id="LOCAL-00001" summary="Adiciona zeros a esquerda e a direita da palavra e cria output do processamento para um arquivo">
+      <created>1667862229852</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667862229852</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adiciona zeros a esquerda e a direita da palavra e cria output do processamento para um arquivo">
+      <created>1667862438759</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667862438759</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adiciona zeros a esquerda e a direita da palavra e cria output do processamento para um arquivo">
+      <created>1667862478409</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667862478409</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1667863432173</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667863432173</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1667863581398</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667863581398</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1667865459344</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667865459344</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Corrige cadeia vazia">
+      <created>1667873663999</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667873663999</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Renomea simbolo das transicoes para leSimbolo">
+      <created>1667874526693</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667874526693</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Corrige forma que pega simbolos brancos">
+      <created>1667912407995</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667912407995</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adiciona arquivo de exemplos">
+      <created>1667931870134</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667931870134</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Descrição do trabalho e exemplos de testes dos dias 07 e 08 de novembro de 2022">
+      <created>1667933676009</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667933676009</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Cria mecanismo para ler transicoes de um arquivo e montar lista de transicoes para a maquina de turing">
+      <created>1669563273814</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669563273815</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adiciona zeros a esquerda e a direita da palavra e cria output do processamento para um arquivo" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Corrige cadeia vazia" />
+    <MESSAGE value="Renomea simbolo das transicoes para leSimbolo" />
+    <MESSAGE value="Corrige forma que pega simbolos brancos" />
+    <MESSAGE value="Adiciona arquivo de exemplos" />
+    <MESSAGE value="Descrição do trabalho e exemplos de testes dos dias 07 e 08 de novembro de 2022" />
+    <MESSAGE value="Cria mecanismo para ler transicoes de um arquivo e montar lista de transicoes para a maquina de turing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cria mecanismo para ler transicoes de um arquivo e montar lista de transicoes para a maquina de turing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/turing/machine/CreateTuringMachine.java</url>
+          <line>309</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/br/com/turing/machine/ReadTransitionsFromFileTest.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/turing/machine/ReadTransitionsFromFile.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="br.com.turing.machine.domain.TuringMachine" memberName="finalStates" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
